@@ -42,7 +42,7 @@ public class Item {
 
     @OneToMany(mappedBy = "item", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
-    private List<Events> bidEvents;
+    private List<Event> bidEvents;
 
     public String getItemCode() {
         return itemCode;
@@ -84,14 +84,14 @@ public class Item {
         this.currentPrice = currentPrice;
     }
 
-    public List<Events> getBidEvents() {
+    public List<Event> getBidEvents() {
         if(bidEvents == null) {
             return new ArrayList<>();
         }
         return bidEvents;
     }
 
-    public void setBidEvents(List<Events> bidEvents) {
+    public void setBidEvents(List<Event> bidEvents) {
         this.bidEvents = bidEvents;
     }
 }

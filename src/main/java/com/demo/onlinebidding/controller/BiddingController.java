@@ -55,8 +55,8 @@ public class BiddingController {
 
         LOGGER.debug("placeBid called on itemCode {}", itemCode);
 
-        Item saved = biddingService.placeBid(itemCode, biddingRequest);
-        return new ResponseEntity<>(saved, HttpStatus.ACCEPTED);
+        biddingService.placeBid(itemCode, biddingRequest);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
     @RequestMapping(method = RequestMethod.GET)

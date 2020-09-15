@@ -11,7 +11,7 @@ CREATE TABLE item (
   updated_date date DEFAULT CURRENT_DATE
 );
 
-CREATE TABLE events (
+CREATE TABLE event (
   id INT(11) unsigned NOT NULL AUTO_INCREMENT,
   user VARCHAR(250) NOT NULL,
   status VARCHAR(250) NOT NULL,

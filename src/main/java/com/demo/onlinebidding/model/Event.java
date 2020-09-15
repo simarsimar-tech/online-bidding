@@ -17,8 +17,8 @@ import javax.validation.constraints.NotNull;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @Entity
-@Table(name = "events")
-public class Events {
+@Table(name = "event")
+public class Event {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
