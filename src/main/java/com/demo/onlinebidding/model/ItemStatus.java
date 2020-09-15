@@ -1,12 +1,12 @@
 package com.demo.onlinebidding.model;
 
-public enum Status {
+public enum ItemStatus {
     RUNNING("running"),
     OVER("over");
     
     private String label;
 
-    Status(String label) {
+    ItemStatus(String label) {
         this.label = label;
     }
 
@@ -14,9 +14,9 @@ public enum Status {
         return label;
     }
 
-    public static Status getValue(String label) {
+    public static ItemStatus getValue(String label) {
         if (label != null) {
-            for (Status value : Status.values()) {
+            for (ItemStatus value : ItemStatus.values()) {
                 if (label.equalsIgnoreCase(value.name()) || label.equalsIgnoreCase(value.getLabel())) {
                     return value;
                 }
