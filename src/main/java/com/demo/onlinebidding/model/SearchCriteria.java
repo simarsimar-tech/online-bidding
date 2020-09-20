@@ -34,4 +34,13 @@ public class SearchCriteria {
     public void setCount(Integer count) {
         this.count = count;
     }
+
+    public SearchCriteria() {
+    }
+
+    public SearchCriteria(String status, Integer start, Integer count) {
+        this.status = status;
+        this.start = start;
+        this.count = count;
+    }
 }

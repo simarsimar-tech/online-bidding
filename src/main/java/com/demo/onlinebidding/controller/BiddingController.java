@@ -7,6 +7,7 @@ import com.demo.onlinebidding.service.BiddingService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -51,11 +52,12 @@ public class BiddingController {
             @ApiResponse(code = 404, message = "<b>Not Found</b> : the resource does not exist.")
     })
     public ResponseEntity<Item> placeBid(@PathVariable(name = "itemCode") final String itemCode,
-            @RequestBody @Valid @NotNull BiddingRequest biddingRequest) {
+            @RequestBody @Valid @NotNull BiddingRequest biddingRequest,
+                                         Authentication authentication) {
 
         LOGGER.debug("placeBid called on itemCode {}", itemCode);
 
-        biddingService.placeBid(itemCode, biddingRequest);
+        biddingService.placeBid(itemCode, biddingRequest, authentication.getName());
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
