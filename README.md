@@ -21,6 +21,10 @@ GET /v1/auction?status=RUNNING
 POST /v1/auction/{itemCode}/bid Request Payload: bidAmount
 
 
+
+
+
+
 To run this project :
 
 1. Sample Data is embedded in data-h2.sql file in resources, this will setup data in h2 at time of initialization.
