@@ -19,7 +19,7 @@ GET /v1/auction?status=RUNNING
 
 2. Place Bid
 POST /v1/auction/{itemCode}/bid Request Payload: bidAmount
-
+Events will be logged for rejected and accepted requests
 
 
 
