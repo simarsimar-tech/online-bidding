@@ -7,14 +7,14 @@ import javax.validation.constraints.NotNull;
 public class BiddingRequest {
 
     @NotNull
-    private Double amount;
+    private Double bidAmount;
 
 
-    public Double getAmount() {
-        return amount;
+    public Double getBidAmount() {
+        return bidAmount;
     }
 
-    public void setAmount(Double amount) {
-        this.amount = amount;
+    public void setBidAmount(Double bidAmount) {
+        this.bidAmount = bidAmount;
     }
 }

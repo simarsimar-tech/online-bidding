@@ -14,7 +14,6 @@ import com.demo.onlinebidding.validation.RequestValidator;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -56,12 +55,12 @@ public class BiddingService {
         try {
             requestValidator.validateBiddingRequest(item, biddingRequest);
 
-            item.setCurrentPrice(biddingRequest.getAmount());
+            item.setCurrentPrice(biddingRequest.getBidAmount());
             biddingRepository.save(item);
-            saveEvent(item, biddingRequest.getAmount(), BidStatus.ACCEPTED.getLabel(), user);
+            saveEvent(item, biddingRequest.getBidAmount(), BidStatus.ACCEPTED.getLabel(), user);
         } catch(RejectedException e) {
             LOGGER.error("Bid rejected for itemCode {}", itemCode, e);
-            saveEvent(item, biddingRequest.getAmount(), BidStatus.REJECTED.getLabel(), user);
+            saveEvent(item, biddingRequest.getBidAmount(), BidStatus.REJECTED.getLabel(), user);
             throw e;
         }
     }

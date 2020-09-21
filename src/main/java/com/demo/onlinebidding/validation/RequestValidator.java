@@ -18,11 +18,11 @@ public class RequestValidator {
             throw new RejectedException("Bidding for this item is over");
         }
 
-        if(biddingRequest.getAmount() < item.getBasePrice()) {
+        if(biddingRequest.getBidAmount() < item.getBasePrice()) {
             throw new RejectedException("Bidding amount should be greater than current price");
         }
 
-        if(item.getCurrentPrice() != null && ((biddingRequest.getAmount() - item.getCurrentPrice()) < item.getStepRate())) {
+        if(item.getCurrentPrice() != null && ((biddingRequest.getBidAmount() - item.getCurrentPrice()) < item.getStepRate())) {
             throw new RejectedException("Bidding amount not acceptable");
         }
     }

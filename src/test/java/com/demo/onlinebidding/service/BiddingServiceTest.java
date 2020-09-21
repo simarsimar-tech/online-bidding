@@ -58,7 +58,7 @@ public class BiddingServiceTest {
 
     private BiddingRequest getBiddingRequest(Double amount) {
         BiddingRequest biddingRequest = new BiddingRequest();
-        biddingRequest.setAmount(amount);
+        biddingRequest.setBidAmount(amount);
         return biddingRequest;
     }
 
