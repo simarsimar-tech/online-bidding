@@ -1,5 +1,6 @@
 package com.demo.onlinebidding.validation;
 
+import com.demo.onlinebidding.exception.InvalidStatusException;
 import com.demo.onlinebidding.exception.RejectedException;
 import com.demo.onlinebidding.model.BiddingRequest;
 import com.demo.onlinebidding.model.Item;
@@ -23,6 +24,12 @@ public class RequestValidator {
 
         if(item.getCurrentPrice() != null && ((biddingRequest.getAmount() - item.getCurrentPrice()) < item.getStepRate())) {
             throw new RejectedException("Bidding amount not acceptable");
+        }
+    }
+
+    public void validateStatus(String status) {
+        if(!StringUtils.isEmpty(status) && ItemStatus.getValue(status) == null) {
+            throw new InvalidStatusException("Invalid status in search");
         }
 
     }

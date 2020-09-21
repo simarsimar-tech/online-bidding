@@ -19,6 +19,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import javax.inject.Inject;
 import java.util.Collections;
@@ -47,7 +48,7 @@ public class BiddingService {
     public void placeBid(String itemCode, BiddingRequest biddingRequest, String user) {
         Optional<Item> response = biddingRepository.findById(itemCode);
 
-        if(response == null || response.get() == null) {
+        if(response == null || Boolean.FALSE.equals(response.isPresent())) {
             throw new ResourceNotFoundException();
         }
         Item item = response.get();
@@ -66,6 +67,7 @@ public class BiddingService {
     }
 
     public List<Item> search(SearchCriteria criteria) {
+        requestValidator.validateStatus(criteria.getStatus());
         return find(criteria);
     }
 
@@ -80,12 +82,12 @@ public class BiddingService {
     }
 
     private List<Item> find(SearchCriteria searchCriteria) {
-        Pageable paging = PageRequest.of(searchCriteria.getStart(), searchCriteria.getCount(), Sort.by("updated_date"));
+        Pageable paging = PageRequest.of(searchCriteria.getStart(), searchCriteria.getCount(), Sort.by("updatedAt"));
 
-        Page<Item> pagedResult = biddingRepository.findAll(paging);
+        List<Item> pagedResult = biddingRepository.findAllByStatus(searchCriteria.getStatus().toLowerCase(), paging);
 
-        if(pagedResult.hasContent()) {
-            return pagedResult.getContent();
+        if(!CollectionUtils.isEmpty(pagedResult)) {
+            return pagedResult;
         }
         return Collections.emptyList();
     }

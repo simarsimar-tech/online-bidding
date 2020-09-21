@@ -13,6 +13,7 @@ import javax.persistence.ManyToOne;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.sql.Date;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @Entity
@@ -35,6 +36,9 @@ public class Event {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "item_code", nullable = false)
     private Item item;
+
+    @Column(name = "created_at")
+    private Date createdAt;
 
     public Long getId() {
         return id;
@@ -74,5 +78,13 @@ public class Event {
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 }

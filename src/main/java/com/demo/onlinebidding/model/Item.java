@@ -1,7 +1,9 @@
 package com.demo.onlinebidding.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +39,12 @@ public class Item {
     @Column(name = "current_price")
     @NotNull
     private Double currentPrice;
+
+    @Column(name = "created_at")
+    private Date createdAt;
+
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     @OneToMany(mappedBy = "item", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
@@ -82,11 +90,28 @@ public class Item {
         this.currentPrice = currentPrice;
     }
 
+    @JsonIgnore
     public List<Event> getBidEvents() {
         if(bidEvents == null) {
             return new ArrayList<>();
         }
         return bidEvents;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Date getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 
     public void setBidEvents(List<Event> bidEvents) {

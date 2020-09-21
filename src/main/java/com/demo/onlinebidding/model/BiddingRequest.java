@@ -9,6 +9,7 @@ public class BiddingRequest {
     @NotNull
     private Double amount;
 
+
     public Double getAmount() {
         return amount;
     }

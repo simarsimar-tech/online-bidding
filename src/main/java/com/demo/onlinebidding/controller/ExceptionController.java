@@ -1,5 +1,6 @@
 package com.demo.onlinebidding.controller;
 
+import com.demo.onlinebidding.exception.InvalidStatusException;
 import com.demo.onlinebidding.exception.RejectedException;
 import com.demo.onlinebidding.exception.ResourceNotFoundException;
 import com.demo.onlinebidding.model.ErrorMessage;
@@ -18,6 +19,11 @@ public class ExceptionController {
 
     @ExceptionHandler(value = RejectedException.class)
     public ResponseEntity<Object> exception(RejectedException exception) {
-        return new ResponseEntity<>(new ErrorMessage("Bidding Rejected"), HttpStatus.NOT_ACCEPTABLE);
+        return new ResponseEntity<>(new ErrorMessage(exception.getMessage()), HttpStatus.NOT_ACCEPTABLE);
+    }
+
+    @ExceptionHandler(value = InvalidStatusException.class)
+    public ResponseEntity<Object> exception(InvalidStatusException exception) {
+        return new ResponseEntity<>(new ErrorMessage(exception.getMessage()), HttpStatus.NOT_ACCEPTABLE);
     }
 }
